@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Ruokavalion seuranta</title>
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1 th:inline="text">Hei [[${#httpServletRequest.remoteUser}]]!</h1>
+	<h1>Ruokavalio</h1>
+	<table class="table table-striped">
+		<tr>
+			<th>Ravinto</th>
+			<th>Määrä (g)</th>
+			<th>Kalorit</th>
+			<th>Hiilihydraatit</th>
+			<th>Proteiinit</th>
+			<th></th>
+			<th></th>
+		</tr>
+		<tr th:each="ravinto : ${ravinto}">
+			<td th:text="${ravinto.ravinto}"></td>
+			<td th:text="${ravinto.maara}"></td>
+			<td th:text="${ravinto.kalorit}"></td>
+			<td th:text="${ravinto.hiilihydraatit}"></td>
+			<td th:text="${ravinto.proteiinit}"></td>
+			<td sec:authorize="hasRole('ADMIN')"><a
+				th:href="@{/poista/{id}(id=${ravinto.id})}"
+				class="btn btn-xs btn-danger">Poista</a></td>
+			<td sec:authorize="hasRole('ADMIN')"><a
+				th:href="@{/muokkaa/{id}(id=${ravinto.id})}">Muokkaa</a></td>
+		</tr>
+	</table>
+	<a sec:authorize="hasRole('ADMIN')" class="btn btn-success" href="/lisaa">Lisää ravinto</a>
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Sign Out" />
+	</form>
+</body>
+</html>
