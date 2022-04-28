@@ -2,18 +2,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
->
 <head>
-<title>Ruokavalio</title>
+<title>Ruokavalion seuranta</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet"
+	th:href="@{css/bootstrap.min.css}" />
 </head>
 <body>
 	<h1>Lisää ravinto</h1>
-	<div>
-		<form th:object="${ravinto}" th:action="@{save}" action="#"
+	<div class="col-md-4">
+		<form th:object="${ravinto}" th:action="@{tallenna}" action="#"
 			method="post">
 			<label for="ravinto">Ravinto</label> <input type="text" id="ravinto"
-				th:field="*{ravinto}" />
+				th:field="*{ravintoNimi}" />
 			<div style="clear: both; display: block; height: 10px;"></div>
 			<label for="maara">Määrä</label> <input type="text" id="maara"
 				th:field="*{maara}" />
@@ -27,7 +28,7 @@
 			<label for="proteiinit">Proteiinit</label> <input type="text"
 				th:field="*{proteiinit}" />
 			<div style="clear: both; display: block; height: 10px;"></div>
-			<input type="submit" value="Save"></input>
+			<input type="submit" value="Tallenna"></input>
 		</form>
 	</div>
 </body>

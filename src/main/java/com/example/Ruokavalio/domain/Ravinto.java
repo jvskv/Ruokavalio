@@ -10,7 +10,7 @@ public class Ravinto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	private String ravinto;
+	private String ravintoNimi;
 	private double maara;
 	private double kalorit;
 	private double hiilihydraatit;
@@ -22,9 +22,9 @@ public class Ravinto {
 		super();
 	}
 
-	public Ravinto(String ravinto, double maara, double kalorit, double hiilihydraatit, double proteiinit) {
+	public Ravinto(String ravintoNimi, double maara, double kalorit, double hiilihydraatit, double proteiinit) {
 		super();
-		this.ravinto = ravinto;
+		this.ravintoNimi = ravintoNimi;
 		this.maara = maara;
 		this.kalorit = kalorit;
 		this.hiilihydraatit = hiilihydraatit;
@@ -35,8 +35,8 @@ public class Ravinto {
 		return id;
 	}
 	
-	public String getRavinto() {
-		return ravinto;
+	public String getRavintoNimi() {
+		return ravintoNimi;
 	}
 
 	public double getMaara() {
@@ -59,8 +59,8 @@ public class Ravinto {
 		this.id = id;
 	}
 
-	public void setRavinto(String ravinto) {
-		this.ravinto = ravinto;
+	public void setRavintoNimi(String ravintoNimi) {
+		this.ravintoNimi = ravintoNimi;
 	}
 	
 	public void setMaara(double maara) {
@@ -81,7 +81,7 @@ public class Ravinto {
 
 	@Override
 	public String toString() {
-		return "Ravinto [ravinto=" + ravinto + ", maara=" + maara + ", kalorit=" + kalorit + ", hiilihydraatit=" + hiilihydraatit + ", proteiinit=" + proteiinit
+		return "Ravinto [ravinto=" + ravintoNimi + ", maara=" + maara + ", kalorit=" + kalorit + ", hiilihydraatit=" + hiilihydraatit + ", proteiinit=" + proteiinit
 				+ "]";
 	}
 	

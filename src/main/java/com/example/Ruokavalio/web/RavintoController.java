@@ -1,6 +1,7 @@
 package com.example.Ruokavalio.web;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,16 +20,16 @@ public class RavintoController {
 
 	@Autowired
 	private RavintoRepository repository;
-	
-	// Kirjaudu sisään
-		@RequestMapping(value = "/login")
-		public String login() {
-			return "login";
 
-		}
+	// Kirjaudu sisään
+	@RequestMapping(value = "/login")
+	public String login() {
+		return "login";
+
+	}
 
 	// Etusivu jolla lista ruokavaliosta
-	@RequestMapping(value = { "/", "etusivu" })
+	@RequestMapping(value = { "/etusivu" })
 	public String etusivu(Model model) {
 		model.addAttribute("ravinto", repository.findAll());
 		return "etusivu";
@@ -62,13 +63,19 @@ public class RavintoController {
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@RequestMapping(value = "/muokkaa/{id}")
 	public String muokkaaRavinto(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("ravinto", new Ravinto());
-		return "muokkaaravinto";
+		model.addAttribute("ravinto", repository.findById(id));
+		return "muokkaa";
 	}
-	
+
 	// RESTful ruokavaliosta
 	@RequestMapping(value = "/RESTravinto", method = RequestMethod.GET)
 	public @ResponseBody List<Ravinto> ravintoRest() {
 		return (List<Ravinto>) repository.findAll();
+	}
+
+	// RESTful yksittäisestä ravinnosta
+	@RequestMapping(value = "/RESTravinnot/{id}", method = RequestMethod.GET)
+	public @ResponseBody Optional<Ravinto> findRavintoRest(@PathVariable("id") Long id) {
+		return repository.findById(id);
 	}
 }

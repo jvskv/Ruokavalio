@@ -19,13 +19,15 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-        .authorizeRequests().antMatchers("/css/**").permitAll() 
-        .and()
-        .authorizeRequests()
-          .anyRequest().authenticated()
-          .and()
+		 http
+	        .authorizeRequests().antMatchers("/css/**").permitAll()
+	        .and()
+	        .authorizeRequests().antMatchers("/rekisterointi", "/tallennakayttaja").permitAll()
+	        .and()
+	        .authorizeRequests().anyRequest().authenticated()
+	        .and()
       .formLogin()
+      .loginPage("/login")
           .defaultSuccessUrl("/etusivu", true)
           .permitAll()
           .and()

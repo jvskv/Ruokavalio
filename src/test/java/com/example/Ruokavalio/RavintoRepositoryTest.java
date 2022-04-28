@@ -22,7 +22,7 @@ public class RavintoRepositoryTest {
 
 	@Test
 	public void findByRavintoShouldReturnKalorit() {
-		List<Ravinto> ravinto = repository.findByRavinto("Riisi");
+		List<Ravinto> ravinto = repository.findByRavintoNimi("Riisi");
 
 		assertThat(ravinto).hasSize(1);
 		assertThat(ravinto.get(0).getKalorit()).isEqualTo(660.0);

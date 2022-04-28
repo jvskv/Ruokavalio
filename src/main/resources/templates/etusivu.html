@@ -22,21 +22,21 @@
 			<th></th>
 		</tr>
 		<tr th:each="ravinto : ${ravinto}">
-			<td th:text="${ravinto.ravinto}"></td>
+			<td th:text="${ravinto.ravintoNimi}"></td>
 			<td th:text="${ravinto.maara}"></td>
 			<td th:text="${ravinto.kalorit}"></td>
 			<td th:text="${ravinto.hiilihydraatit}"></td>
 			<td th:text="${ravinto.proteiinit}"></td>
-			<td sec:authorize="hasRole('ADMIN')"><a
+			<td sec:authorize="hasAuthority('ADMIN')"><a
 				th:href="@{/poista/{id}(id=${ravinto.id})}"
 				class="btn btn-xs btn-danger">Poista</a></td>
-			<td sec:authorize="hasRole('ADMIN')"><a
+			<td sec:authorize="hasAuthority('ADMIN')"><a
 				th:href="@{/muokkaa/{id}(id=${ravinto.id})}">Muokkaa</a></td>
 		</tr>
 	</table>
-	<a sec:authorize="hasRole('ADMIN')" class="btn btn-success" href="/lisaa">Lisää ravinto</a>
+	<a sec:authorize="hasAuthority('ADMIN')" class="btn btn-success" href="/lisaa">Lisää ravinto</a>
 	<form th:action="@{/logout}" method="post">
-		<input type="submit" value="Sign Out" />
+		<input type="submit" value="Kirjaudu ulos" />
 	</form>
 </body>
 </html>
