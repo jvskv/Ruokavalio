@@ -32,7 +32,7 @@ public class UserController {
 	@RequestMapping(value = "tallennakayttaja", method = RequestMethod.POST)
 	public String save(@Valid @ModelAttribute("rekisteroi") Rekisteröinti rekisteröinti, BindingResult bindingResult) {
 		if (!bindingResult.hasErrors()) {
-			if (rekisteröinti.getUsername().equals(rekisteröinti.getPasswordCheck())) {
+			if (rekisteröinti.getPassword().equals(rekisteröinti.getPasswordCheck())) {
 				String salasana = rekisteröinti.getPassword();
 				BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
 				String hashSalasana = bc.encode(salasana);
@@ -45,11 +45,11 @@ public class UserController {
 					repository.save(newUser);
 				} else {
 					bindingResult.rejectValue("username", "err.username", "Username already exists");
-					return "signup";
+					return "rekisterointi";
 				}
 			} else {
 				bindingResult.rejectValue("passwordCheck", "err.passCheck", "Passwords does not match");
-				return "signup";
+				return "rekisterointi";
 			}
 		} else {
 			return "rekisterointi";
